@@ -25,7 +25,13 @@ endif
 
 tools-$(BUILD_TOOLCHAIN) += gmp mpfr mpc libelf
 tools-y += m4 libtool autoconf automake flex bison pkg-config sed mklibs
-tools-y += sstrip make-ext4fs e2fsprogs mtd-utils mkimage
+#tools-y += sstrip make-ext4fs e2fsprogs mtd-utils mkimage
+# ZDY:
+# 大部分编译主机上的工具可以编过了，但mtd-utils在ubuntu 22.04上提示找不到
+# zlib，因此不编译了，因为我们并不需要最终的image，而只是需要一个编译出
+# 工具链以及内核模块。
+# 这样就足够方便我们使用了。
+tools-y += sstrip make-ext4fs e2fsprogs mkimage
 tools-y += firmware-utils patch-image patch quilt yaffs2 flock padjffs2
 tools-y += mm-macros missing-macros xz cmake scons bc findutils gengetopt patchelf
 tools-$(CONFIG_TARGET_orion_generic) += wrt350nv2-builder upslug2
@@ -35,11 +41,14 @@ tools-$(CONFIG_TARGET_mxs) += elftosb
 tools-$(CONFIG_TARGET_brcm2708)$(CONFIG_TARGET_sunxi)$(CONFIG_TARGET_mxs) += mtools dosfstools
 tools-$(CONFIG_TARGET_ar71xx) += lzma-old squashfs
 tools-$(CONFIG_TARGET_ipq806x)$(CONFIG_TARGET_ipq) += ramdump-parser
-tools-y += lzma squashfs4
+# ZDY: remove squashfs4. see above.
+#tools-y += lzma squashfs4
+tools-y += lzma
 tools-$(BUILD_B43_TOOLS) += b43-tools
 tools-$(BUILD_PPL_CLOOG) += ppl cloog
 tools-$(CONFIG_USE_SPARSE) += sparse
-tools-y += coccinelle
+# ZDY: remove this.
+#tools-y += coccinelle
 
 # builddir dependencies
 $(curdir)/bison/compile := $(curdir)/flex/install

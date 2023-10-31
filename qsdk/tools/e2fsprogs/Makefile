@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=e2fsprogs
-PKG_VERSION:=1.42.8
-PKG_MD5SUM:=8ef664b6eb698aa6b733df59b17b9ed4
+PKG_VERSION:=1.45.6
+PKG_MD5SUM:=ffa7ae6954395abdc50d0f8605d8be84736465afc53b8938ef473fcf7ff44256
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/e2fsprogs
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=@KERNEL/linux/kernel/people/tytso/e2fsprogs/v$(PKG_VERSION)/
 
 HOST_BUILD_PARALLEL:=1
 
@@ -22,12 +22,11 @@ include $(INCLUDE_DIR)/host-build.mk
 HOST_CFLAGS += $(FPIC)
 
 HOST_CONFIGURE_ARGS += \
-	--disable-shared \
 	--disable-elf-shlibs \
-	--enable-static \
-	--enable-dynamic-e2fsck \
+	--enable-libuuid \
 	--disable-tls \
-	--disable-nls
+	--disable-nls \
+	--enable-threads=pth
 
 define Host/Prepare
 	$(call Host/Prepare/Default)

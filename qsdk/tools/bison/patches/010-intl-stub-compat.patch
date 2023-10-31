@@ -1,6 +1,6 @@
 --- a/src/main.c
 +++ b/src/main.c
-@@ -60,9 +60,9 @@
+@@ -60,8 +60,8 @@
  {
    set_program_name (argv[0]);
    setlocale (LC_ALL, "");
