@@ -8,12 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libnl
-PKG_VERSION:=3.2.21
+# ZDY: bump to 3.3.0 (minimal requirement for the missing interface) for vpp lcp_interface
+# using openwrt 18.06 for check patch needed.
+PKG_VERSION:=3.3.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.infradead.org/~tgr/libnl/files/
-PKG_MD5SUM:=6fe7136558a9071e70673dcda38545b3
+PKG_SOURCE_URL:=https://github.com/thom311/libnl/releases/download/libnl3_3_0/libnl-3.3.0.tar.gz
+PKG_MD5SUM:=ab3ef137cad95bdda5ff0ffa5175dfa5
 PKG_LICENSE:=LGPL-2.1
 
 PKG_FIXUP:=autoreconf
